@@ -1,0 +1,37 @@
+
+//微信小程序wxml
+ <view class="viewZiLeft">          
+         <view  wx:for="{{allarr[3]}}" id="left"  style="height:{{heightArrBom[index]}}rpx">
+                   {{item}}
+                </view>
+        </view>
+
+        <view class="viewZiRight">
+                <view  wx:for="{{allarr[1]}}" id="right"  style="height:{{heightArrBom[index]}}rpx">
+                  {{item}}               
+                </view>
+  </view>
+//微信小程序js
+
+
+//数据
+allarr:[
+  {hallName:"早上",seq:5,sex:"男"},
+  {hallName:"中午",seq:1608,sex:"男"},
+  ["早上","男"],
+   ["晚上","女"]
+];
+ heightArrBom:[21,21,42]
+ 
+ //说明：
+ 
+ 经过测试 你会发现 allarr[3] 是一个数组被循环后 我们绑定的 style="height:{{heightArrBom[index]}}rpx" 也成功的被渲染;
+ 
+ PS:
+ 但是你发现allarr[1] 是一个对象被循环后    我们缺拿不到heightArrBom数组里面的数据  
+ 
+ Why? 这真的是一个坑 浪费很长时间 记录一次
+ 
+ 我发现了 是因为后面和前面不同的是循环了数组和循环了对象 而后面我们绑定样式为数组 所以我大胆的进行了猜测 是不是因为 对象和数组的原因?  
+ 
+ 我进行了Object.values(allarr[1]) 提取了对象中的"值" 返回出一个数组 果然数据获取到了！！！ 至于为什么如此 我暂时也不知! 但已经证实这样可行
