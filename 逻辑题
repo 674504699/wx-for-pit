@@ -52,3 +52,32 @@
       }
 
       console.log(convert(prompt('请输入一个数字')));
+      
+      //使下斜着排列的文组成完成语句=>今天晚上我们一起去看新上映的电影《流浪地球》好不好?听小李说非常值得看!
+      let arr = [
+        ["今", "天", "上", "一", "新", "影"],
+        ["晚", "我", "起", "上", "《", "》"],
+        ["们", "去", "映", "流", "好", "听"],
+        ["看", "的", "浪", "不", "小", "非"],
+        ["电", "地", "好", "李", "常", "得"],
+        ["球", "?", "说", "值", "看", "!"]
+      ]
+        let str = arr[0][0]
+        function arrReturn(arr, x, y) {
+          let xZuoBiao = y
+          for(let i = x; i <= y; i++) {
+            str = str + arr[i][xZuoBiao]
+            xZuoBiao--
+          }
+            if (y >= arr[0].length - 1) {
+              x++
+            } else {
+              y++
+            }
+            if (x >= arr.length) {
+              return false
+            }
+            arrReturn(arr, x,y)
+        }
+        arrReturn(arr, 0, 1)
+        console.log(str)
